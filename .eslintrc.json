@@ -1,0 +1,4 @@
+{
+  "extends": [], // Remove Next.js defaults
+  "rules": {}    // No active rules
+}

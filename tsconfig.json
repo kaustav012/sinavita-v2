@@ -1,0 +1,65 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/product/[id]/page.jsx",
+    "components/MigrainSupport.jsx",
+    "components/product-showcase.jsx",
+    "components/footer.jsx",
+    "components/ingredients-section.jsx",
+    "components/user-sidebar.jsx",
+    "components/update-form.jsx",
+    "components/support-form.jsx",
+    "components/testimonials.jsx",
+    "components/mechanism-section.jsx",
+    "app/product-faq/[id]/page.jsx",
+    "app/privacy/page.jsx",
+    "app/terms/page.jsx",
+    "app/cookies/page.jsx",
+    "app/blog/example-blog/[id]/page.jsx",
+    "app/blog/page.jsx",
+    "app/cart/page.jsx",
+    "app/layout.jsx",
+    "app/registration/page.jsx",
+    "app/login/page.jsx",
+    "app/checkout/page.jsx",
+    "app/about/page.jsx",
+    "app/dashboard/page.jsx",
+    "app/contact/page.jsx",
+    "app/product/OLD-page.jsx",
+    "app/forgot-password/page.jsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
