@@ -1,7 +1,8 @@
 "use client";
 import { Button } from "../../../components/ui/button";
-import Header from "../../components/header";
+import Header from "../../../components/header";
 import Footer from "../../../components/footer";
+
 import { useState, useEffect } from "react";
 import { RadioGroup, RadioGroupItem } from "../../../components/ui/radio-group";
 import { Label } from "../../../components/ui/label";
