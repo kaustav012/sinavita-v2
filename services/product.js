@@ -7,6 +7,11 @@ export const PRODUCT_LIST = async () => {
     return response?.data?.data || [];
 };
 
+export const PRODUCT_SINGLE_LIST = async () => {
+    const response = await api.get('/all-single-products');
+    return response?.data?.data || [];
+};
+
 export const PRODUCT_DETAILS_BY_ID = async (id) => {
     try {
         const response = await api.get(`/product-home/${id}`);

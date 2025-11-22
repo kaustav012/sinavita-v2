@@ -80,7 +80,7 @@ const ProductPage = () => {
         <div className="hero-section">
           <Header productDetails={productDetails} id={productDetails?.id} />
           <Cursor />
-          <SinaVitaLanding productCartData={productCartData} />
+          <SinaVitaLanding productCartData={productCartData} productDetails={productDetails} />
           <CardsScroll productDetails={productDetails} />
           <MarqueeComponents productDetails={productDetails} />
           <MigrainSupport id={productDetails?.id} />

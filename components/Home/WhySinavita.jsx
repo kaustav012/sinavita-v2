@@ -2,7 +2,7 @@ const WhySinavita = () => (
     <section className="max-w-5xl mx-auto px-4 py-16">
         {/* Section Title */}
         <h1
-            className="text-4xl md:text-5xl font-bold mb-8 leading-tight font-ravenna tracking-tightcustom text-center"
+            className="text-4xl md:text-8xl font-bold mb-8 leading-tight font-ravenna tracking-tightcustom text-center"
             style={{ letterSpacing: '0.1vw', lineHeight: 1.2 }}
         >
             Why SinaVita®
