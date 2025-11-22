@@ -8,9 +8,9 @@ import {
   DialogDescription,
   DialogFooter,
   DialogClose
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+} from '../components/ui/dialog';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
 import { X } from 'lucide-react';
 import Image from 'next/image';
 import axios from 'axios';
@@ -37,25 +37,25 @@ export default function NewsletterModal({ open, onOpenChange }) {
   }, [open]);
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    await axios.post(`${BASE_URL}/newsletter`, { email });
-    setSubmitted(true);
-    setTimeout(() => {
-      onOpenChange(false);
-    }, 2000); // 2 second delay
-  } catch (error) {
-    setError(error);
-    console.error('Newsletter submission failed:', error);
-  }
-};
+    e.preventDefault();
+    try {
+      await axios.post(`${BASE_URL}/newsletter`, { email });
+      setSubmitted(true);
+      setTimeout(() => {
+        onOpenChange(false);
+      }, 2000); // 2 second delay
+    } catch (error) {
+      setError(error);
+      console.error('Newsletter submission failed:', error);
+    }
+  };
 
 
   const slides = Array.isArray(newsletterData?.newsletter_images)
     ? newsletterData.newsletter_images
     : newsletterData?.newsletter_image
-    ? [newsletterData.newsletter_image]
-    : [];
+      ? [newsletterData.newsletter_image]
+      : [];
 
   const [current, setCurrent] = useState(0);
   const next = () => setCurrent((c) => (c + 1) % slides.length);
@@ -93,9 +93,8 @@ export default function NewsletterModal({ open, onOpenChange }) {
                     {slides.map((_, i) => (
                       <span
                         key={i}
-                        className={`w-2 h-2 rounded-full ${
-                          i === current ? 'bg-blue-600' : 'bg-white/80'
-                        }`}
+                        className={`w-2 h-2 rounded-full ${i === current ? 'bg-blue-600' : 'bg-white/80'
+                          }`}
                       />
                     ))}
                   </div>
@@ -145,13 +144,13 @@ export default function NewsletterModal({ open, onOpenChange }) {
                 </DialogFooter>
               </form>
             )}
-             {
+            {
               !submitted && error && (
                 <div className="mt-8 text-center">
-                <p className="text-lg font-medium text-red-600">
-                  {error.response.data.message}!
-                </p>
-              </div>
+                  <p className="text-lg font-medium text-red-600">
+                    {error.response.data.message}!
+                  </p>
+                </div>
               )
             }
           </div>

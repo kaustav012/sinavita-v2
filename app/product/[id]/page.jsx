@@ -6,16 +6,17 @@ import CardsScroll from "../components/CardsScroll";
 import MarqueeComponents from "../components/MarqueeComponents";
 import Bottel from "../components/bottel/Bottel";
 import Cursor from "../components/cursor/Cursor";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import MigrainSupport from "@/components/MigrainSupport";
+
+import Footer from "../components/footer";
+import MigrainSupport from "../../../components/MigrainSupport";
 import Image360Viewer from "../components/Image360Viewer";
 import ProductSupportTwo from "../components/ProductSupportTwo";
 import SinaVitaLanding from "./SinaVitaLanding";
 import { useParams } from "next/navigation";
-import { PRODUCT_DETAILS_BY_ID, PRODUCT_IMAGE_SEQUENCE_BY_ID, PRODUCT_ANIMATION_BY_ID, PRODUCT_CART_BY_ID } from "@/services/product";
+import { PRODUCT_DETAILS_BY_ID, PRODUCT_IMAGE_SEQUENCE_BY_ID, PRODUCT_ANIMATION_BY_ID, PRODUCT_CART_BY_ID } from "../../../services/product";
 import { useEffect, useState } from "react";
-import LoadingText from "@/components/LoadingText";
+import LoadingText from "../../../components/LoadingText";
+import Header from "../../../components/header";
 
 const ProductPage = () => {
   const { id } = useParams(); // Get the ID from the URL

@@ -1,5 +1,5 @@
 'use client'
-import { BUSINESS_API } from "@/services/product";
+import { BUSINESS_API } from "../services/product";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";

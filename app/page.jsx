@@ -1,15 +1,15 @@
 // pages/index.tsx
 'use client';
 import { useEffect, useState } from 'react';
-import Header from '@/components/header';
-import HealthSolutions from '@/components/Home/HealthSolutions';
-import WhySinavita from '@/components/Home/WhySinavita';
-import ProductRange from '@/components/Home/ProductRange';
-import Footer from '@/components/footer';
-import LoadingText from '@/components/LoadingText';
+import Header from '../components/header';
+import HealthSolutions from '../components/Home/HealthSolutions';
+import WhySinavita from '../components/Home/WhySinavita';
+import ProductRange from '../components/Home/ProductRange';
+import Footer from '../components/footer';
+import LoadingText from '../components/LoadingText';
 import { PRODUCT_LIST } from '../services/product';
-import CookieBanner from '@/components/CookieBanner';
-import NewsletterModal from '@/components/NewsletterModal';
+import CookieBanner from '../components/CookieBanner';
+import NewsletterModal from '../components/NewsletterModal';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);

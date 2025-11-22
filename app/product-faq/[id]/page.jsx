@@ -2,18 +2,18 @@
 import { useEffect, useState } from "react";
 import { ChevronDown, ChevronRight, MoveUpRight } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../../components/ui/button";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import MigrainSupport from "@/components/MigrainSupport";
-import LoadingText from "@/components/LoadingText";
-import { PRODUCT_FAQ_BY_ID } from "@/services/product";
+} from "../../../components/ui/accordion";
+import Footer from "../../../components/footer";
+import Header from "../../../components/header";
+import MigrainSupport from "../../../components/MigrainSupport";
+import LoadingText from "../../../components/LoadingText";
+import { PRODUCT_FAQ_BY_ID } from "../../../services/product";
 import { useParams } from "next/navigation";
 
 export default function FAQPage() {

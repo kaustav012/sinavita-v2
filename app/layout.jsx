@@ -8,10 +8,10 @@ import {
   BusinessProvider,
   AuthProvider,
   CartProvider
-} from "@/services/context";
+} from "../services/context";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Header from "@/components/header";
+import Header from "../components/header";
 // Load the custom font
 const ravennaFont = localFont({
   src: "/fonts/ravenna-serial-extrabold-regular.ttf",

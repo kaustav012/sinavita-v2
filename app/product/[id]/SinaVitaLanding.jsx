@@ -1,9 +1,9 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react';
 import { ShoppingCart, User, Menu, X, ChevronDown, Check, ArrowRightCircle } from 'lucide-react';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
-import { IngredientsSection } from '@/components/ingredients-section';
+import Header from '../../../components/header';
+import Footer from '../../../components/footer';
+import { IngredientsSection } from '../../../components/ingredients-section';
 
 const SinaVitaLanding = ({ productCartData }) => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

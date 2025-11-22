@@ -1,17 +1,17 @@
 "use client";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import { Button } from "../../../components/ui/button";
+import Header from "../../../components/header";
+import Footer from "../../../components/footer";
 import { motion } from "framer-motion";
-import { Input } from "@/components/ui/input";
+import { Input } from "../../../components/ui/input";
 import Link from "next/link";
-import MigrainSupport from "@/components/MigrainSupport";
+import MigrainSupport from "../../../components/MigrainSupport";
 import Content from "./components/Content";
 import { useParams } from "next/navigation";
-import { PRODUCT_SUPPORT_BY_ID } from "@/services/product";
+import { PRODUCT_SUPPORT_BY_ID } from "../../../services/product";
 import { useEffect, useState } from "react";
-import LoadingText from "@/components/LoadingText";
+import LoadingText from "../../../components/LoadingText";
 export default function Page() {
   const { id } = useParams(); // Get the ID from the URL
 

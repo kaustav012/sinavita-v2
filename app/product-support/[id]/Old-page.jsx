@@ -1,12 +1,12 @@
 "use client";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import { Button } from "../../components/ui/button";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 import { motion } from "framer-motion";
-import { Input } from "@/components/ui/input";
+import { Input } from "../../components/ui/input";
 import Link from "next/link";
-import MigrainSupport from "@/components/MigrainSupport";
+import MigrainSupport from "../../components/MigrainSupport";
 export default function Page() {
     return (
         <div>

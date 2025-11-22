@@ -6,17 +6,17 @@ import { CalendarIcon, Edit, ShoppingBag, Truck } from 'lucide-react';
 import DownloadIcon from '@mui/icons-material/Download';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useRouter } from "next/navigation";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import { useAuth } from '@/services/context/AuthContext';
-import LoadingText from '@/components/LoadingText';
-import { BASE_URL, SELF_API } from '@/services/product';
+import Footer from "../../components/footer";
+import Header from "../../components/header";
+import { useAuth } from '../../services/context/AuthContext';
+import LoadingText from '../../components/LoadingText';
+import { BASE_URL, SELF_API } from '../../services/product';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { useOrders } from '@/services/context/OrderContext';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { useOrders } from '../../services/context/OrderContext';
+import { Popover, PopoverContent, PopoverTrigger } from '../../components/ui/popover';
 import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSameMonth, isSameDay } from 'date-fns';
-import { Calendar } from '@/components/ui/calendar';
+import { Calendar } from '../../components/ui/calendar';
 import { Rating, TextField, Button } from '@mui/material';
 export default function ProfilePage() {
 

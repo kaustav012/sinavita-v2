@@ -2,17 +2,18 @@
 
 import Image from "next/image";
 import { MinusCircle, PlusCircle, Loader2, CreditCard } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "../../components/ui/button";
+import { Card } from "../../components/ui/card";
+import { CardContent } from "../../components/ui/card";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 import { useRouter } from "next/navigation";
-import { useCart } from "@/services/context/CartContext";
+import { useCart } from "../../services/context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
-import LoadingText from "@/components/LoadingText";
-import { PRODUCT_LIST } from "@/services/product";
+import LoadingText from "../../components/LoadingText";
+import { PRODUCT_LIST } from "../../services/product";
 import Link from "next/link";
 export default function ShoppingCart() {
   const { cartItems, removeFromCart, subtotal, tax, total, taxLoading, fetchTaxRate, taxParcentage } = useCart();
@@ -23,32 +24,32 @@ export default function ShoppingCart() {
   const [loadingTwo, setLoadingTwo] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [recommendedProducts, setRecommendedProducts] = useState([]);
-const [loadingProducts, setLoadingProducts] = useState(true);
+  const [loadingProducts, setLoadingProducts] = useState(true);
 
-useEffect(() => {
-  const fetchProducts = async () => {
-    setLoadingProducts(true);
-    try {
-      const data = await PRODUCT_LIST();
-      const cartProductIds = cartItems.map(item => item.product_id);
-const filtered = (data || []).filter(
-  (product) => !cartProductIds.includes(product.id)
-);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoadingProducts(true);
+      try {
+        const data = await PRODUCT_LIST();
+        const cartProductIds = cartItems.map(item => item.product_id);
+        const filtered = (data || []).filter(
+          (product) => !cartProductIds.includes(product.id)
+        );
 
-      setRecommendedProducts(filtered);
-      console.log("All products:", data);
-console.log("Cart product IDs:", cartProductIds);
-console.log("Filtered recommended products:", filtered);
+        setRecommendedProducts(filtered);
+        console.log("All products:", data);
+        console.log("Cart product IDs:", cartProductIds);
+        console.log("Filtered recommended products:", filtered);
 
-    } catch (error) {
-      console.error("Error fetching recommended products:", error);
-    } finally {
-      setLoadingProducts(false);
-    }
-  };
+      } catch (error) {
+        console.error("Error fetching recommended products:", error);
+      } finally {
+        setLoadingProducts(false);
+      }
+    };
 
-  fetchProducts();
-}, [cartItems]);
+    fetchProducts();
+  }, [cartItems]);
 
   const price = 25;
 
@@ -297,33 +298,33 @@ console.log("Filtered recommended products:", filtered);
 
         }
         <div className="flex flex-col items-center justify-center mt-20">
-  <h2 className="text-2xl font-semibold mb-10">Recommended for you</h2>
-  {loadingProducts ? (
-    <p className="text-center text-gray-500">Loading...</p>
-  ) : (
-    <div className="border rounded-2xl shadow-xl bg-gray-50 container flex flex-wrap gap-10 items-center justify-center py-10 mb-20">
-      {recommendedProducts.map((product) => (
-        <Link href={`/product/${product?.id}`}>
-        <Card
-          key={product.id}
-          className="p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300"
-        >
-          <div className="relative w-full h-80 mb-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
-            <Image
-              src={product.featured_image}
-              alt={product.name}
-              fill
-              className="object-contain"
-            />
-          </div>
-          <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-1">{product.name}</h3>
-          <p className="text-xl text-gray-600 dark:text-gray-400 font-bold">${product.single_price}</p>
-        </Card>
-        </Link>
-      ))}
-    </div>
-  )}
-</div>
+          <h2 className="text-2xl font-semibold mb-10">Recommended for you</h2>
+          {loadingProducts ? (
+            <p className="text-center text-gray-500">Loading...</p>
+          ) : (
+            <div className="border rounded-2xl shadow-xl bg-gray-50 container flex flex-wrap gap-10 items-center justify-center py-10 mb-20">
+              {recommendedProducts.map((product) => (
+                <Link href={`/product/${product?.id}`}>
+                  <Card
+                    key={product.id}
+                    className="p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <div className="relative w-full h-80 mb-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+                      <Image
+                        src={product.featured_image}
+                        alt={product.name}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-1">{product.name}</h3>
+                    <p className="text-xl text-gray-600 dark:text-gray-400 font-bold">${product.single_price}</p>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
 
 
         <Footer />

@@ -1,13 +1,13 @@
 "use client";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useAuth } from "@/services/context/AuthContext";
+import { useAuth } from "../../services/context/AuthContext";
 
 export default function ForgotPasswordPageContent() {
     const [email, setEmail] = useState("");

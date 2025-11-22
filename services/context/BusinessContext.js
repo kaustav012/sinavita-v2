@@ -1,7 +1,7 @@
 // context/BusinessContext.js
 'use client'
 import { createContext, useContext, useEffect, useState } from 'react';
-import { BUSINESS_API } from '@/services/product';
+import { BUSINESS_API } from '../../services/product';
 
 const BusinessContext = createContext();
 

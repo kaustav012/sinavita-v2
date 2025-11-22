@@ -1,12 +1,12 @@
 'use client'
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import { ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import { POLICY_API } from "@/services/product";
-import LoadingText from "@/components/LoadingText";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import { POLICY_API } from "../../services/product";
+import LoadingText from "../../components/LoadingText";
 
 export default function TermsAndConditions() {
     const [showButton, setShowButton] = useState(false);

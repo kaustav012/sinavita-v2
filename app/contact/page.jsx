@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { UserSidebar } from "@/components/user-sidebar";
-import { UpdateForm } from "@/components/update-form";
-import { OrdersList } from "@/components/orders-list";
-import { SupportForm } from "@/components/support-form";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import { UserSidebar } from "../../components/user-sidebar";
+import { UpdateForm } from "../../components/update-form";
+import { OrdersList } from "../../components/orders-list";
+import { SupportForm } from "../../components/support-form";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 
 export default function ContactPage() {
   const [activeTab, setActiveTab] = useState("update");

@@ -2,31 +2,31 @@
 
 import Image from "next/image"
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Button } from "../../components/ui/button"
+import { Card, CardContent } from "../../components/ui/card"
+import { Input } from "../../components/ui/input"
+import { Label } from "../../components/ui/label"
+import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group"
 import { Facebook, Twitter, Instagram, Youtube, PinIcon as Pinterest, Phone, MapPin } from "lucide-react"
-import Footer from "@/components/footer"
-import Header from "@/components/header"
+import Footer from "../../components/footer"
+import Header from "../../components/header"
 import { useEffect, useState } from "react"
-import { useAuth } from "@/services/context/AuthContext";
-import LoadingText from "@/components/LoadingText";
-import { BASE_URL, PAYMENT_GET_WAY_API } from "@/services/product";
+import { useAuth } from "../../services/context/AuthContext";
+import LoadingText from "../../components/LoadingText";
+import { BASE_URL, PAYMENT_GET_WAY_API } from "../../services/product";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useAddress } from "@/services/context/AddressContext";
+import { useAddress } from "../../services/context/AddressContext";
 import { Pencil, Trash2 } from 'lucide-react';
-import { useCart } from "@/services/context/CartContext";
+import { useCart } from "../../services/context/CartContext";
 import {
   PayPalScriptProvider,
   PayPalButtons,
   usePayPalScriptReducer
 } from "@paypal/react-paypal-js"
 import PaypalButtonCom from "./PaypalButtonCom"
-import { useBusiness } from "@/services/context/BusinessContext";
-import CouponModal from '@/components/CouponModal'
+import { useBusiness } from "../../services/context/BusinessContext";
+import CouponModal from '../../components/CouponModal'
 import { CardElement, Elements, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 

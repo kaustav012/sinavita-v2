@@ -1,23 +1,23 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import { Button } from "../../../components/ui/button";
+import Header from "../../components/header";
+import Footer from "../../../components/footer";
 import { useState, useEffect } from "react";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { IngredientsSection } from "@/components/ingredients-section";
-import { MechanismSection } from "@/components/mechanism-section";
+import { RadioGroup, RadioGroupItem } from "../../../components/ui/radio-group";
+import { Label } from "../../../components/ui/label";
+import { IngredientsSection } from "../../../components/ingredients-section";
+import { MechanismSection } from "../../../components/mechanism-section";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import MigrainSupport from "@/components/MigrainSupport";
+import MigrainSupport from "../../../components/MigrainSupport";
 import CardScrollCart from "../../product/components/CardScrollCart";
 import MarqueeComponents from "../../product/components/MarqueeComponents";
 import CartBottol from "./CartBottol";
 import Image360Viewer from "./components/Image360Viewer";
 import { useParams } from "next/navigation";
-import { PRODUCT_CART_BY_ID, PRODUCT_DETAILS_BY_ID, PRODUCT_IMAGE_SEQUENCE_BY_ID } from "@/services/product";
-import LoadingText from "@/components/LoadingText";
-import { useCart } from "@/services/context/CartContext";
+import { PRODUCT_CART_BY_ID, PRODUCT_DETAILS_BY_ID, PRODUCT_IMAGE_SEQUENCE_BY_ID } from "../../../services/product";
+import LoadingText from "../../../components/LoadingText";
+import { useCart } from "../../../services/context/CartContext";
 
 export default function Page() {
   const { addToCart } = useCart();

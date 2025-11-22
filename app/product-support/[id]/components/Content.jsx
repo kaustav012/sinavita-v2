@@ -3,7 +3,7 @@ import { ArrowRightCircle } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../../../components/ui/button";
 import Link from "next/link";
 
 

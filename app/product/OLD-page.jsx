@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
 import {
   Star,
   ArrowUpRight,
@@ -16,15 +16,15 @@ import {
   ArrowUpLeftFromCircle,
   ArrowUpRightFromCircle,
 } from "lucide-react";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import Link from "next/link";
 // import ProductBenefits from "./components/ProductBenefits";
 // import "../../components/ProductAnimation/index.css";
-import Testimonials from "@/components/testimonials";
-import MigrainSupport from "@/components/MigrainSupport";
+import Testimonials from "../../components/testimonials";
+import MigrainSupport from "../../components/MigrainSupport";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },

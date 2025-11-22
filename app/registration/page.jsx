@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Checkbox } from "../../components/ui/checkbox";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
 import Link from "next/link";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 import { toast } from "react-toastify";
-import { useAuth } from "@/services/context/AuthContext";
+import { useAuth } from "../../services/context/AuthContext";
 
 export default function Registration() {
   const router = useRouter();

@@ -2,50 +2,50 @@
 import { Button } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
-import { useCart } from "@/services/context/CartContext";
-import { useBusiness } from "@/services/context/BusinessContext";
+import { useCart } from "../services/context/CartContext";
+import { useBusiness } from "../services/context/BusinessContext";
 import Avatar from "@mui/material/Avatar";
-import { useAuth } from "@/services/context/AuthContext";
+import { useAuth } from "../services/context/AuthContext";
 import { useEffect } from "react";
-import LanguagesIcon from "@/app/icons/LanguagesIcon";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import LanguagesIcon from "../app/icons/LanguagesIcon";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../components/ui/select";
 const Header = ({ productDetails, id }) => {
   const { cartItems } = useCart();
   const { userToken, userData } = useAuth();
   const { businessData } = useBusiness()
 
   useEffect(() => {
-      const addTranslateScript = () => {
-        const script = document.createElement("script");
-        script.src =
-          "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-        script.async = true;
-        document.body.appendChild(script);
-      };
-  
-      window.googleTranslateElementInit = function () {
-        new window.google.translate.TranslateElement(
-          {
-            pageLanguage: "en",
-            layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-          },
-          "google_translate_element"
-        );
-      };
-  
-      addTranslateScript();
-    }, []);
-  
-    const handleLanguageChange = (lang) => {
-      if (!lang) return;
-    
-      const cookieLang = `googtrans=/en/${lang}`;
-      document.cookie = cookieLang;
-      localStorage.setItem("googtrans", cookieLang);
-      location.reload();
+    const addTranslateScript = () => {
+      const script = document.createElement("script");
+      script.src =
+        "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      document.body.appendChild(script);
     };
-    
-  
+
+    window.googleTranslateElementInit = function () {
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+        },
+        "google_translate_element"
+      );
+    };
+
+    addTranslateScript();
+  }, []);
+
+  const handleLanguageChange = (lang) => {
+    if (!lang) return;
+
+    const cookieLang = `googtrans=/en/${lang}`;
+    document.cookie = cookieLang;
+    localStorage.setItem("googtrans", cookieLang);
+    location.reload();
+  };
+
+
 
   return (
     <>
@@ -127,19 +127,19 @@ const Header = ({ productDetails, id }) => {
               </Button>
             </Link>
           )}
-           {/* Hidden Google Translate element */}
-        <div id="google_translate_element" style={{ display: "none" }}></div>
+          {/* Hidden Google Translate element */}
+          <div id="google_translate_element" style={{ display: "none" }}></div>
 
-        <Select onValueChange={handleLanguageChange}>
-      <SelectTrigger className="w-[70px]">
-        <SelectValue placeholder={<LanguagesIcon />} />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="en">English</SelectItem>
-        <SelectItem value="no">Norwegian</SelectItem>
-        <SelectItem value="sv">Swedish</SelectItem>
-      </SelectContent>
-    </Select>
+          <Select onValueChange={handleLanguageChange}>
+            <SelectTrigger className="w-[70px]">
+              <SelectValue placeholder={<LanguagesIcon />} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="en">English</SelectItem>
+              <SelectItem value="no">Norwegian</SelectItem>
+              <SelectItem value="sv">Swedish</SelectItem>
+            </SelectContent>
+          </Select>
 
 
         </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardFooter } from '../components/ui/card';
 
 // Utility to get a specific cookie by name
 function getCookie(name) {
