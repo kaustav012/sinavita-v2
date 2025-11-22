@@ -7,7 +7,7 @@ import MarqueeComponents from "../components/MarqueeComponents";
 import Bottel from "../components/bottel/Bottel";
 import Cursor from "../components/cursor/Cursor";
 
-import Footer from "../components/footer";
+import Footer from "../../../components/footer";
 import MigrainSupport from "../../../components/MigrainSupport";
 import Image360Viewer from "../components/Image360Viewer";
 import ProductSupportTwo from "../components/ProductSupportTwo";
