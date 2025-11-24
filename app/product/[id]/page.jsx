@@ -83,7 +83,7 @@ const ProductPage = () => {
           <SinaVitaLanding productCartData={productCartData} productDetails={productDetails} id={id} />
           <CardsScroll productDetails={productDetails} />
           <MarqueeComponents productDetails={productDetails} />
-          <MigrainSupport id={productDetails?.id} />
+          <MigrainSupport id={productDetails?.id} productCartData={productCartData} />
           <Footer productDetails={productDetails} id={productDetails?.id} />
         </div>
       </div>

@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
+import { Button } from "../../../components/ui/button";
+import Link from "next/link";
 
-export default function WhyOfferMatters({ productCartData }) {
+export default function WhyOfferMatters({ productCartData, id }) {
   const [openIndex, setOpenIndex] = useState(-1);
 
   const handleToggle = (index) => {
@@ -13,7 +15,7 @@ export default function WhyOfferMatters({ productCartData }) {
       <div className="container mx-auto">
 
         {/* HEADING */}
-        <h2 className="text-4xl md:text-9xl font-extrabold mb-8 uppercase">
+        <h2 className="text-4xl md:text-9xl font-bold mb-8 uppercase">
           {productCartData?.section4_title}
         </h2>
 
@@ -48,13 +50,28 @@ export default function WhyOfferMatters({ productCartData }) {
             </div>
           );
         })}
-
+        <hr />
         <div
           className="mt-4"
           dangerouslySetInnerHTML={{
             __html: productCartData?.section5_desc || "",
           }}
         />
+        <div style={{
+          marginTop: "50px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column"
+        }}>
+          <Link
+            href={id ? `/product-cart/${id}` : "#"}
+            className="bg-transparent border-4 border-white text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-white hover:text-orange-500 transition-all transform hover:scale-105 shadow-lg w-full md:w-auto"
+          >
+            CLAIM YOUR OFFER!
+          </Link>
+          <p className="pt-4">🔒 Secure Checkout — Encrypted & Protected</p>
+        </div>
       </div>
     </section>
   );

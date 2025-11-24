@@ -20,7 +20,7 @@ const MigrainSupport = ({ id, productCartData }) => {
           <div className="md:text-left">
             <div className="gap-0">
               <h2 className="text-6xl lg:text-9xl lg-text uppercase font-bold text-white">
-                Get Migraine
+                {productCartData?.product?.call_to_action_text}
               </h2>
               <Link className="flex" href={id ? `/product-support/${id}` : "#"}>
                 <h2 className="text-6xl lg:text-9xl uppercase font-bold text-white ">

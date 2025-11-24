@@ -278,7 +278,7 @@ export default function Page() {
       {/* What's Inside Section */}
       <IngredientsSection productCartData={productCartData} />
       <MigraineOfferSection productCartData={productCartData} />
-      <WhyOfferMatters productCartData={productCartData} />
+      <WhyOfferMatters productCartData={productCartData} id={productDetails?.id} />
 
       <MigrainSupport productDetails={productDetails} id={productDetails?.id} productCartData={productCartData} />
       <Footer productDetails={productDetails} id={productDetails?.id} />
