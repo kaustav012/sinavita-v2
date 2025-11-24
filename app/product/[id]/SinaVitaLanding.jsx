@@ -302,13 +302,20 @@ const SinaVitaLanding = ({ productCartData, productDetails, id }) => {
             {/* Limited Offer Section */}
             <section className="bg-gradient-to-r from-yellow-500 to-orange-500 to-orange-400 px-4 lg:px-8 py-12 md:py-20">
                 <div className='container m-auto'>
-                    <div className="max-w-4xl grid md:grid-cols-2 gap-12 items-center">
+                    <div className="max-w-4xl grid md:grid-cols-2 gap-12 items-center relative">
                         <div className="text-white space-y-6">
                             <h2 className="text-4xl md:text-5xl lg:text-9xl font-bold leading-tight">
                                 LIMITED OFFER
                             </h2>
 
                             <div dangerouslySetInnerHTML={{ __html: productDetails?.limited_desc }} />
+                            <div className="md:block hidden">
+                                <img
+                                    src={productDetails?.limited_image}
+                                    alt=""
+                                    className="absolute top-0 bottom-0 left-[35%] w-[600px] h-[600px] object-cover"
+                                />
+                            </div>
                             {/* <p className="text-2xl md:text-3xl font-bold">
                                 Get a FREE Nebulizer (value 99 USD)<br />with the first 100 kits ordered!
                             </p>

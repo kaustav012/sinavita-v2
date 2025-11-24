@@ -6,7 +6,7 @@ export default function MigraineKitSection({ id, productCartData }) {
       <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <div>
-          <h2 className="text-4xl md:text-7xl font-extrabold mb-6">
+          <h2 className="text-4xl md:text-8xl font-extrabold mb-6">
             {productCartData?.section2_title}
           </h2>
           <div dangerouslySetInnerHTML={{ __html: productCartData?.section2_short_note }} />

@@ -13,7 +13,7 @@ export default function WhyOfferMatters({ productCartData }) {
       <div className="container mx-auto">
 
         {/* HEADING */}
-        <h2 className="text-4xl md:text-7xl font-extrabold mb-8 uppercase">
+        <h2 className="text-4xl md:text-8xl font-extrabold mb-8 uppercase">
           {productCartData?.section4_title}
         </h2>
 

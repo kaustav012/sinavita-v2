@@ -6,7 +6,7 @@ export default function MigraineOfferSection({ id, productCartData }) {
       <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* LEFT CONTENT */}
         <div>
-          <h2 className="text-4xl md:text-7xl font-extrabold leading-tight mb-6 uppercase">
+          <h2 className="text-4xl md:text-8xl font-extrabold leading-tight mb-6 uppercase">
             {productCartData?.section3_title}
           </h2>
 
