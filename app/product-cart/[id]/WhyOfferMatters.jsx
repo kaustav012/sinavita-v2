@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 export default function WhyOfferMatters({ productCartData }) {
-  const [openIndex, setOpenIndex] = useState(0); // First item open by default
+  const [openIndex, setOpenIndex] = useState(-1);
 
   const handleToggle = (index) => {
     setOpenIndex((prev) => (prev === index ? -1 : index));
@@ -31,8 +31,6 @@ export default function WhyOfferMatters({ productCartData }) {
                 >
                   {ele?.reason}
                 </button>
-
-                <p className="text-sm mt-1">(CLICK TO EXPAND)</p>
               </div>
 
               {/* ACCORDION CONTENT */}
