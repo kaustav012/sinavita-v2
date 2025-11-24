@@ -4,8 +4,9 @@ import { ShoppingCart, User, Menu, X, ChevronDown, Check, ArrowRightCircle } fro
 import Header from '../../../components/header';
 import Footer from '../../../components/footer';
 import { IngredientsSection } from '../../../components/ingredients-section';
+import Link from 'next/link';
 
-const SinaVitaLanding = ({ productCartData, productDetails }) => {
+const SinaVitaLanding = ({ productCartData, productDetails, id }) => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [expandedIngredient, setExpandedIngredient] = useState(null);
     const [buttonPosition, setButtonPosition] = useState('fixed');
@@ -125,9 +126,9 @@ const SinaVitaLanding = ({ productCartData, productDetails }) => {
                             className="w-full h-auto rounded-lg"
                         />
                     </div>
-                    <button className="mt-5 bg-transparent border-4 border-white text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-white hover:text-orange-500 transition-all transform hover:scale-105 shadow-lg w-full md:w-auto">
+                    <Link href={`/product-cart/${id}`} className="mt-5 bg-transparent border-4 border-white text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-white hover:text-orange-500 transition-all transform hover:scale-105 shadow-lg w-full md:w-auto">
                         GET YOUR KIT TODAY!
-                    </button>
+                    </Link>
                 </div>
             </div>
 
@@ -310,17 +311,19 @@ const SinaVitaLanding = ({ productCartData, productDetails }) => {
                             <div dangerouslySetInnerHTML={{ __html: productDetails?.limited_desc }} />
                             {/* <p className="text-2xl md:text-3xl font-bold">
                                 Get a FREE Nebulizer (value 99 USD)<br />with the first 100 kits ordered!
-                            </p> */}
+                            </p>
 
-                            {/* <div className="space-y-4">
+                            <div className="space-y-4">
                                 <p className="text-xl font-semibold">Limited Pre-Launch Stock Available</p>
                                 <p className="text-lg">once sold out, this offer will never return.</p>
                                 <p className="text-lg">Your one-time opportunity to access SinaVita®'s</p>
                             </div> */}
 
-                            <button className="bg-transparent border-4 border-white text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-white hover:text-orange-500 transition-all transform hover:scale-105 shadow-lg">
-                                CLAIM YOUR OFFER!
-                            </button>
+                            <div className='mt-5'>
+                                <Link href={`/product-cart/${id}`} className="bg-transparent border-4 border-white text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-white hover:text-orange-500 transition-all transform hover:scale-105 shadow-lg">
+                                    CLAIM YOUR OFFER!
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
