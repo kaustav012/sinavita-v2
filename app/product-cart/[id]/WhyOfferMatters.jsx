@@ -48,6 +48,13 @@ export default function WhyOfferMatters({ productCartData }) {
             </div>
           );
         })}
+
+        <div
+          className="mt-4"
+          dangerouslySetInnerHTML={{
+            __html: productCartData?.section5_desc || "",
+          }}
+        />
       </div>
     </section>
   );
