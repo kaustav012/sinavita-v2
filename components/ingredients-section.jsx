@@ -234,7 +234,7 @@ export function IngredientsSection({ productCartData }) {
                   className="text-white font-semibold text-start py-2 rounded-lg w-[100%]"
                   onClick={() => toggleAccordion(index)}
                 >
-                  <h2 className="text-3xl md:text-8xl">{ingredient?.ingredient_name}</h2>
+                  <h2 className="text-3xl md:text-7xl">{ingredient?.ingredient_name}</h2>
                 </button>
                 <button onClick={() => toggleAccordion(index)}>
                   <ArrowRightCircle

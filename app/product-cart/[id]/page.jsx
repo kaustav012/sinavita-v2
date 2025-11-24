@@ -122,7 +122,7 @@ export default function Page() {
             <div className="relative w-[80%] flex items-center justify-center">
               <img
                 // src="/image/cta_img.png"
-                src={productCartData?.product?.featured_image}
+                src={productCartData?.product?.section1_image}
 
                 alt="SinaVita Migraine Support Kit"
                 className="w-full h-auto"
@@ -256,11 +256,11 @@ export default function Page() {
                         className="w-12 h-12 md:w-16 md:h-16 text-slate-600 stroke-[1.5]"
                         strokeWidth={1.5}
                       /> */}
-                      <img className="w-12 h-12 md:w-16 md:h-16 text-slate-600 stroke-[1.5]" src={badge?.badge_image_url} alt={badge.badge_title} />
+                      <img className="w-20 h-20 md:w-40 md:h-40 text-slate-600 stroke-[1.5]" src={badge?.badge_image_url} alt={badge.badge_title} />
                       <div>
-                        <h3 className="text-slate-700 font-bold text-base md:text-lg leading-tight">
+                        {/* <h3 className="text-slate-700 font-bold text-base md:text-lg leading-tight">
                           {badge.badge_title}
-                        </h3>
+                        </h3> */}
                         {/* <p className="text-slate-700 font-bold text-base md:text-lg leading-tight">
                           {badge.badge_title}
                         </p> */}

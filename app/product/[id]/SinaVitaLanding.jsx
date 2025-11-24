@@ -14,6 +14,7 @@ const SinaVitaLanding = ({ productCartData, productDetails, id }) => {
     const qualitySectionRef = useRef(null);
     const stoppButtonRef = useRef(null);
 
+
     const [openIndex, setOpenIndex] = useState(null);
     const sectionRefs = useRef([]);
 
@@ -222,7 +223,7 @@ const SinaVitaLanding = ({ productCartData, productDetails, id }) => {
                                                     </div> */}
 
                                                         {/* Benefits Section */}
-                                                        {/* <div className="w-full lg:w-2/2">
+                                                        <div className="w-full lg:w-2/2">
                                                             <div className="bg-white text-gray-600 text-sm font-semibold px-4 py-2 rounded-md w-fit mb-6">
                                                                 Benefits
                                                             </div>
@@ -255,7 +256,7 @@ const SinaVitaLanding = ({ productCartData, productDetails, id }) => {
                                                             </div>
 
 
-                                                        </div> */}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             )}
