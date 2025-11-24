@@ -202,7 +202,7 @@ export function IngredientsSection({ productCartData }) {
 
   return (
     <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white">
-      <section className="container mx-auto py-16 px-4 mb-16 md:mb-24">
+      <section className="container mx-auto py-16 px-4">
         <h2 className="text-3xl md:text-5xl lg:text-9xl font-bold text-white pb-4 border-b-2 border-white-300 hidden md:block">
           WHAT&apos;S <br />{" "}
           <div className="">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 
-const MigrainSupport = ({ id }) => {
+const MigrainSupport = ({ id, productCartData }) => {
   return (
     <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white">
       <section

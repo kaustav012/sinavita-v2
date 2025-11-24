@@ -45,25 +45,28 @@ const HealthSolutions = ({ product }) => {
             </p>
 
             {/* Kit Products Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-                {product?.map((ele, index) => (
-                    <div className="flex flex-col items-center" key={index}>
-                        <img
-                            src={ele?.featured_image || "https://dummyimage.com/250x300/f2f2f2/222"}
-                            alt={ele?.name}
-                            className="mb-3 rounded"
-                        />
-                        <h3 className="font-bold mt-1">{ele?.name}</h3>
-                        <p className="text-sm mt-2">{ele?.short_description}</p>
-                        <Link
-                            href={`/product/${ele?.id}`}
-                            className="mt-4 bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition"
-                        >
-                            EXPLORE
-                        </Link>
-                    </div>
-                ))}
+            <div className='max-w-7xl mx-auto px-4'>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                    {product?.map((ele, index) => (
+                        <div className="flex flex-col items-center" key={index}>
+                            <img
+                                src={ele?.featured_image || "https://dummyimage.com/250x300/f2f2f2/222"}
+                                alt={ele?.name}
+                                className="mb-3 rounded"
+                            />
+                            <h3 className="font-bold mt-1">{ele?.name}</h3>
+                            <p className="text-sm mt-2">{ele?.short_description}</p>
+                            <Link
+                                href={`/product/${ele?.id}`}
+                                className="mt-4 bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition"
+                            >
+                                EXPLORE
+                            </Link>
+                        </div>
+                    ))}
+                </div>
             </div>
+
         </section>
     );
 };
