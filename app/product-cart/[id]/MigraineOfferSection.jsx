@@ -45,8 +45,8 @@ export default function MigraineOfferSection({ id, productCartData }) {
         <div className="flex flex-col items-center relative">
           <div className=" w-full max-w-md">
             <img
-              src="/image/picture2.png"
-              alt="SinaVita Migraine Support Kit"
+              src={productCartData?.section3_image}
+              alt={productCartData?.section3_title}
               className="w-full h-auto rounded-lg"
             />
           </div>

@@ -22,7 +22,7 @@ const MigrainSupport = ({ id, productCartData }) => {
               <h2 className="text-6xl lg:text-9xl lg-text uppercase font-bold text-white">
                 Get Migraine
               </h2>
-              <Link className="flex" href={id ? `/product-cart/${id}` : "#"}>
+              <Link className="flex" href={id ? `/product-support/${id}` : "#"}>
                 <h2 className="text-6xl lg:text-9xl uppercase font-bold text-white ">
                   Support
                 </h2>

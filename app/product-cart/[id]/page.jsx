@@ -136,9 +136,15 @@ export default function Page() {
               <h1 className="text-3xl md:text-4xl lg:text-7xl font-bold text-gray-800 mb-2">
                 {productCartData?.title}
               </h1>
-              <p className="text-gray-600">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html:
+                    productCartData?.section1_short_note || "",
+                }}
+              />
+              {/* <p className="text-gray-600">
                 {productCartData?.section1_short_note}
-              </p>
+              </p> */}
             </div>
 
             <h2 className="text-5xl font-bold pb-6 text-[#f36c21]">
@@ -239,24 +245,25 @@ export default function Page() {
             </div>
             <div className="grid gap-4">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                {badges.map((badge, index) => {
-                  const Icon = badge.icon;
+                {productCartData?.product?.trust_badges?.map((badge, index) => {
+
                   return (
                     <div
                       key={index}
                       className="flex flex-col items-center text-center space-y-3"
                     >
-                      <Icon
+                      {/* <Icon
                         className="w-12 h-12 md:w-16 md:h-16 text-slate-600 stroke-[1.5]"
                         strokeWidth={1.5}
-                      />
+                      /> */}
+                      <img className="w-12 h-12 md:w-16 md:h-16 text-slate-600 stroke-[1.5]" src={badge?.badge_image_url} alt={badge.badge_title} />
                       <div>
                         <h3 className="text-slate-700 font-bold text-base md:text-lg leading-tight">
-                          {badge.title}
+                          {badge.badge_title}
                         </h3>
-                        <p className="text-slate-700 font-bold text-base md:text-lg leading-tight">
-                          {badge.subtitle}
-                        </p>
+                        {/* <p className="text-slate-700 font-bold text-base md:text-lg leading-tight">
+                          {badge.badge_title}
+                        </p> */}
                       </div>
                     </div>
                   );
