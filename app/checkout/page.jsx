@@ -576,10 +576,10 @@ export default function CheckoutPage() {
   }
 
   const subscriptionQtyMap = {
-    "monthly": "1 monthly",
-    "3_monthly": "3 monthly",
-    "6_monthly": "6 monthly",
-    "12_monthly": "12 monthly"
+    "monthly": "1 Month",
+    "3_monthly": "3 Month",
+    "6_monthly": "6 Month",
+    "12_monthly": "12 Month"
   };
 
 
@@ -755,7 +755,9 @@ export default function CheckoutPage() {
                             />
                             <div>
                               <h3 className="font-medium">{ele?.title}</h3>
-                              <p className="font-bold"> ${ele?.price}  ({subscriptionQtyMap[ele.subscription_type]})</p>
+                              <p className="font-bold">
+                                ${ele?.price} {ele.subscription_type === "monthly" ? "" : `(${subscriptionQtyMap[ele.subscription_type]})`}
+                              </p>
                             </div>
                           </div>
                         )

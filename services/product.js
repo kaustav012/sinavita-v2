@@ -6,6 +6,13 @@ export const PRODUCT_LIST = async () => {
     const response = await api.get('/product-list');
     return response?.data?.data || [];
 };
+export const PRODUCT_RECOMMENDED = async (productIds) => {
+    const response = await api.post("/checkout-recommended", {
+        product_ids: productIds,
+    });
+
+    return response?.data?.data || [];
+};
 
 export const PRODUCT_SINGLE_LIST = async () => {
     const response = await api.get('/all-single-products');

@@ -87,7 +87,7 @@ const ProductRange = ({ productGroups }) => {
                                                 addToCart(
                                                     item,
                                                     item?.single_offer_price || item?.single_base_price,
-                                                    "single"
+                                                    "monthly"
                                                 )
                                             } className="bg-yellow-400 text-white font-semibold px-6 py-2 rounded hover:bg-yellow-500 transition">
                                                 ADD TO CART

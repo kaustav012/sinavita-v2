@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 import { useCart } from "../../services/context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
 import LoadingText from "../../components/LoadingText";
-import { PRODUCT_LIST } from "../../services/product";
+import { PRODUCT_RECOMMENDED } from "../../services/product";
 
 export default function ShoppingCart() {
   const {
@@ -40,20 +40,19 @@ export default function ShoppingCart() {
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
 
+  // console.log("recommendedProducts: ", recommendedProducts);
+
+
   useEffect(() => {
     const fetchProducts = async () => {
+      if (!cartItems || cartItems.length === 0) return;
+
+      const productIds = cartItems.map(item => item.product_id);
+
       setLoadingProducts(true);
       try {
-        const data = await PRODUCT_LIST();
-        const cartProductIds = cartItems.map((item) => item.product_id);
-        const filtered = (data || []).filter(
-          (product) => !cartProductIds.includes(product.id)
-        );
-
-        setRecommendedProducts(filtered);
-        // console.log("All products:", data);
-        // console.log("Cart product IDs:", cartProductIds);
-        // console.log("Filtered recommended products:", filtered);
+        const data = await PRODUCT_RECOMMENDED(productIds);
+        setRecommendedProducts(data);
       } catch (error) {
         console.error("Error fetching recommended products:", error);
       } finally {
@@ -64,7 +63,6 @@ export default function ShoppingCart() {
     fetchProducts();
   }, [cartItems]);
 
-  const price = 25;
 
   useEffect(() => {
     fetchTaxRate();
@@ -84,6 +82,16 @@ export default function ShoppingCart() {
       router.push("/checkout");
     }, 2000);
   };
+
+  const subscriptionQtyMap = {
+    "monthly": 1,
+    "3_monthly": 3,
+    "6_monthly": 6,
+    "12_monthly": 12
+  };
+
+  console.log("cartItems: ", cartItems);
+
 
   return taxLoading ? (
     <LoadingText />
@@ -174,11 +182,13 @@ export default function ShoppingCart() {
                               <td className="p-4 md:p-6">
                                 <span className="font-bold text-lg">
                                   ${item.price}
+                                  {item?.subscription_type === "monthly" ? "" : "/M X"}
+                                  {item?.subscription_type === "monthly" ? "" : subscriptionQtyMap[item?.subscription_type]}
                                 </span>
                               </td>
                               <td className="p-4 md:p-6">
                                 <span className="font-medium text-sm md:text-base">
-                                  $ {item.price}
+                                  $ {item.price * (item?.subscription_type === "monthly" ? 1 : subscriptionQtyMap[item?.subscription_type])}
                                 </span>
                               </td>
                               <td className="p-4 md:p-6">
@@ -221,7 +231,9 @@ export default function ShoppingCart() {
                                 <h3 className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                                   {item.title}
                                 </h3>
-                                <p className="font-bold">${item?.price}</p>
+                                <p className="font-bold"> ${item.price}
+                                  {item?.subscription_type === "monthly" ? "" : "/M X"}
+                                  {item?.subscription_type === "monthly" ? "" : subscriptionQtyMap[item?.subscription_type]}</p>
                               </div>
                             </div>
                             <Button
@@ -294,7 +306,7 @@ export default function ShoppingCart() {
               </h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Audio Book */}
-                {[...Array(6)].map((ele, index) => {
+                {recommendedProducts?.map((ele, index) => {
                   return (
                     <div className="overflow-hidden border hover:shadow-xl transition-shadow">
                       <div className="p-6">
@@ -302,7 +314,7 @@ export default function ShoppingCart() {
                           <div>
                             <div className="relative w-24 h-32 flex-shrink-0 rounded-lg overflow-hidden mb-4">
                               <img
-                                src="/image/Picture1.png"
+                                src={ele?.featured_image}
                                 alt="SinaVita Migraine Support Kit"
                                 className="w-full h-auto rounded-lg"
                               />
@@ -314,8 +326,8 @@ export default function ShoppingCart() {
                           <div className="flex-1">
                             <div className="flex items-start justify-between mb-2">
                               <div>
-                                <h3 className="font-bold text-lg mb-1">
-                                  Migraine Release
+                                <h3 className="font-bold text-lg mb-1 line-clamp-2">
+                                  {ele?.name}
                                 </h3>
                                 <p className="font-semibold text-sm text-gray-700 dark:text-gray-300 mb-2">
                                   Audio Book
@@ -323,12 +335,11 @@ export default function ShoppingCart() {
                               </div>
                             </div>
                             <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
-                              Master advanced techniques to map and manage your
-                              migraine triggers with this insightful audiobook.
+                              {ele?.short_description}
                             </p>
                             <div className="flex items-center gap-2 mb-3">
                               <Headphones className="w-4 h-4 text-gray-600" />
-                              <p className="text-sm font-bold">$37.00</p>
+                              <p className="text-sm font-bold">${ele?.single_offer_price || ele?.single_base_price}</p>
                               <span className="text-xs text-gray-500 italic">
                                 Instant access today!
                               </span>

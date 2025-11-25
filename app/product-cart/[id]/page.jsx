@@ -34,6 +34,7 @@ export default function Page() {
 
   const [loading, setLoading] = useState(true);
   const [productCartData, setProductCartData] = useState([]);
+  const [subPrice, setSubPrice] = useState(0);
 
   // Product Cart Data
   useEffect(() => {
@@ -125,10 +126,14 @@ export default function Page() {
 
   // Handler for plan change (monthly vs subscription)
   const handlePlanChange = (value) => {
+    console.log("value: ", value);
+
     if (value === "subscription") {
+      setSubPrice(productCartData?.product?.subscription_price)
       // When subscription is selected, default to first subscription option
       setSelectedOption("3_monthly");
     } else {
+      setSubPrice(productCartData?.product?.single_price)
       // When monthly is selected
       setSelectedOption("monthly");
     }
@@ -262,8 +267,7 @@ export default function Page() {
                   onClick={() =>
                     addToCart(
                       productCartData,
-                      subscriptionOptions.find((o) => o.id === selectedOption)
-                        ?.price || productCartData?.product?.single_price,
+                      subPrice,
                       selectedOption
                     )
                   }

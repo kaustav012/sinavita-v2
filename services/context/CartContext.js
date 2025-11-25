@@ -87,36 +87,56 @@ export const CartProvider = ({ children }) => {
      ----------------------------------- */
     const addToCart = async (product, price, subscriptionType) => {
         console.log("product:", product);
+        console.log("priceNew:", price);
+        console.log("subscriptionType:", subscriptionType);
 
         const productId = product?.product_id || product?.id;
         const quantity = subscriptionQtyMap[subscriptionType] || 1;
 
-        // FIXED EXISTS CHECK ✔
-        const exists = cartItems.find(
+        const existingIndex = cartItems.findIndex(
             (item) =>
                 item.product_id === product?.product_id ||
                 item.product_id === product?.id
         );
 
+        let updatedCart = [...cartItems];
+
         /* -----------------------------------
-         * IF PRODUCT NOT EXIST — ADD LOCALLY
+         * IF PRODUCT EXISTS → UPDATE IT
          ----------------------------------- */
-        if (!exists) {
+        if (existingIndex !== -1) {
+            updatedCart[existingIndex] = {
+                ...updatedCart[existingIndex],
+                price: price,
+                subscription_type: subscriptionType,
+                quantity: quantity,
+                title: product.title || product.name,
+                image: product?.product?.featured_image || product?.featured_image,
+            };
+
+            setCartItems(updatedCart);
+            setCartToLocalStorage(updatedCart);
+        } else {
+            /* -----------------------------------
+             * IF PRODUCT NOT EXIST → ADD NEW
+             ----------------------------------- */
             const selectedProduct = {
                 product_id: productId,
                 title: product.title || product.name,
-                price: price * quantity,
+                price: price,
                 image: product?.product?.featured_image || product?.featured_image,
                 subscription_type: subscriptionType,
-                quantity: quantity
+                quantity: quantity,
             };
 
-            const updatedCart = [...cartItems, selectedProduct];
+            updatedCart.push(selectedProduct);
             setCartItems(updatedCart);
             setCartToLocalStorage(updatedCart);
         }
 
-        // 🔐 If logged in, push to server
+        /* -----------------------------------
+         * UPDATE SERVER CART IF LOGGED IN
+         ----------------------------------- */
         if (token) {
             try {
                 await axios.post(
@@ -155,8 +175,8 @@ export const CartProvider = ({ children }) => {
      * SUBTOTAL CALCULATION
      ----------------------------------- */
     const subtotal = cartItems.reduce((acc, item) => {
-        // const qty = subscriptionQtyMap[item.subscription_type] || 1;
-        return acc + Number(item.price) * 1;
+        const qty = subscriptionQtyMap[item.subscription_type] || 1;
+        return acc + Number(item.price) * qty;
     }, 0);
 
     /* -----------------------------------

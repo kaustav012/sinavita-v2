@@ -75,7 +75,7 @@ export default function FAQPage() {
                         <ChevronDown className="ml-2 h-5 w-5" />
                       </h3>
 
-                      <Accordion type="single" collapsible>
+                      <Accordion type="monthly" collapsible>
                         {
                           elem?.faq?.map((val, ind) => {
                             return (
