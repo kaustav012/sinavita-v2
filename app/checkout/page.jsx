@@ -575,6 +575,14 @@ export default function CheckoutPage() {
     currency: "USD"
   }
 
+  const subscriptionQtyMap = {
+    "monthly": "1 monthly",
+    "3_monthly": "3 monthly",
+    "6_monthly": "6 monthly",
+    "12_monthly": "12 monthly"
+  };
+
+
 
   if (loading) return <LoadingText />;
   if (!userToken) return null; // Avoid flicker before redirect
@@ -747,7 +755,7 @@ export default function CheckoutPage() {
                             />
                             <div>
                               <h3 className="font-medium">{ele?.title}</h3>
-                              <p className="font-bold">{ele.subscription_type !== "single" && "12 x"} ${ele?.price}{ele.subscription_type !== "single" && "/"}{ele.subscription_type === "single" ? null : ele?.subscription_type}</p>
+                              <p className="font-bold"> ${ele?.price}  ({subscriptionQtyMap[ele.subscription_type]})</p>
                             </div>
                           </div>
                         )

@@ -178,11 +178,7 @@ export default function ShoppingCart() {
                               </td>
                               <td className="p-4 md:p-6">
                                 <span className="font-medium text-sm md:text-base">
-                                  $
-                                  {item.price *
-                                    (item.subscription_type === "single"
-                                      ? 1
-                                      : 12)}
+                                  $ {item.price}
                                 </span>
                               </td>
                               <td className="p-4 md:p-6">

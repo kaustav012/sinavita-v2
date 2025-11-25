@@ -16,8 +16,6 @@ export const CartProvider = ({ children }) => {
     const [taxLoading, setTaxLoading] = useState(false);
     const [taxParcentage, setTaxParcentage] = useState(0);
 
-    console.log("cartItems:", cartItems);
-
     /* -----------------------------------
      * LOAD AUTH TOKEN
      ----------------------------------- */
@@ -79,9 +77,9 @@ export const CartProvider = ({ children }) => {
      ----------------------------------- */
     const subscriptionQtyMap = {
         "monthly": 1,
-        "bi-monthly": 2,
-        "quarterly": 3,
-        "single": 1
+        "3_monthly": 3,
+        "6_monthly": 6,
+        "12_monthly": 12
     };
 
     /* -----------------------------------
@@ -107,7 +105,7 @@ export const CartProvider = ({ children }) => {
             const selectedProduct = {
                 product_id: productId,
                 title: product.title || product.name,
-                price: price,
+                price: price * quantity,
                 image: product?.product?.featured_image || product?.featured_image,
                 subscription_type: subscriptionType,
                 quantity: quantity
@@ -157,8 +155,8 @@ export const CartProvider = ({ children }) => {
      * SUBTOTAL CALCULATION
      ----------------------------------- */
     const subtotal = cartItems.reduce((acc, item) => {
-        const qty = subscriptionQtyMap[item.subscription_type] || 1;
-        return acc + Number(item.price) * qty;
+        // const qty = subscriptionQtyMap[item.subscription_type] || 1;
+        return acc + Number(item.price) * 1;
     }, 0);
 
     /* -----------------------------------
