@@ -9,18 +9,26 @@ export const useCart = () => useContext(CartContext);
 export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const [token, setToken] = useState(null);
-    const [tax, setTax] = useState(null)
-    const [total, setTotal] = useState(null)
-    const [taxRate, setTaxRate] = useState(0); // dynamic tax rate
-    const [taxLoading, setTaxLoading] = useState(false)
-    const [taxParcentage, setTaxParcentage] = useState(0)
-    // 🔐 Load token safely
+
+    const [tax, setTax] = useState(null);
+    const [total, setTotal] = useState(null);
+    const [taxRate, setTaxRate] = useState(0);
+    const [taxLoading, setTaxLoading] = useState(false);
+    const [taxParcentage, setTaxParcentage] = useState(0);
+
+    console.log("cartItems:", cartItems);
+
+    /* -----------------------------------
+     * LOAD AUTH TOKEN
+     ----------------------------------- */
     useEffect(() => {
         const storedToken = localStorage.getItem("userToken");
         setToken(storedToken);
     }, []);
 
-    // 🛒 Load initial cart
+    /* -----------------------------------
+     * LOAD CART BASED ON TOKEN
+     ----------------------------------- */
     useEffect(() => {
         if (token) {
             fetchServerCart();
@@ -30,32 +38,31 @@ export const CartProvider = ({ children }) => {
         }
     }, [token]);
 
-    // 📥 Get local cart
+    /* -----------------------------------
+     * LOCAL CART GET/SET
+     ----------------------------------- */
     const getCartFromLocalStorage = () => {
         try {
             const stored = localStorage.getItem("cart");
             const parsed = stored ? JSON.parse(stored) : [];
-
-            if (Array.isArray(parsed)) return parsed;
-            if (parsed && Array.isArray(parsed.items)) return parsed.items;
-
-            return [];
-        } catch (e) {
-            console.error("Failed to parse local cart", e);
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (err) {
+            console.error("Failed to parse local cart", err);
             return [];
         }
     };
 
-    // 📤 Set local cart
     const setCartToLocalStorage = (cart) => {
         try {
             localStorage.setItem("cart", JSON.stringify(cart));
-        } catch (e) {
-            console.error("Failed to set cart in localStorage", e);
+        } catch (err) {
+            console.error("Failed to set cart in localStorage", err);
         }
     };
 
-    // 🌐 Fetch cart from server
+    /* -----------------------------------
+     * FETCH SERVER CART
+     ----------------------------------- */
     const fetchServerCart = async () => {
         try {
             const res = await axios.get("/api/cart", {
@@ -67,166 +74,141 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    // ➕ Add to Cart
-    const addToCart = async (product, price, subscriptionType) => {
-        // console.log("subscriptionType: ", subscriptionType);
+    /* -----------------------------------
+     * SUBSCRIPTION TYPE → QTY MAPPING
+     ----------------------------------- */
+    const subscriptionQtyMap = {
+        "monthly": 1,
+        "bi-monthly": 2,
+        "quarterly": 3,
+        "single": 1
+    };
 
+    /* -----------------------------------
+     * ADD TO CART
+     ----------------------------------- */
+    const addToCart = async (product, price, subscriptionType) => {
+        console.log("product:", product);
+
+        const productId = product?.product_id || product?.id;
+        const quantity = subscriptionQtyMap[subscriptionType] || 1;
+
+        // FIXED EXISTS CHECK ✔
+        const exists = cartItems.find(
+            (item) =>
+                item.product_id === product?.product_id ||
+                item.product_id === product?.id
+        );
+
+        /* -----------------------------------
+         * IF PRODUCT NOT EXIST — ADD LOCALLY
+         ----------------------------------- */
+        if (!exists) {
+            const selectedProduct = {
+                product_id: productId,
+                title: product.title || product.name,
+                price: price,
+                image: product?.product?.featured_image || product?.featured_image,
+                subscription_type: subscriptionType,
+                quantity: quantity
+            };
+
+            const updatedCart = [...cartItems, selectedProduct];
+            setCartItems(updatedCart);
+            setCartToLocalStorage(updatedCart);
+        }
+
+        // 🔐 If logged in, push to server
         if (token) {
             try {
-                if (!Array.isArray(cartItems)) {
-                    console.warn("Local cart is invalid. Resetting.");
-                    setCartItems([]);
-                    return;
-                }
-
-                const exists = cartItems.find(
-                    (item) => item.product_id === product.product_id
-                );
-
-                if (!exists) {
-                    const selectedProduct = {
-                        product_id: product.product_id,
-                        title: product.title,
-                        price: price,
-                        image: product?.product?.featured_image,
-                        subscription_type: subscriptionType
-                    };
-
-                    const updatedCart = [...cartItems, selectedProduct];
-                    setCartItems(updatedCart);
-                    setCartToLocalStorage(updatedCart);
-                }
                 await axios.post(
                     `${BASE_URL}/user/add-cart`,
-                    { product_id: product.product_id, quantity: 1 },
+                    { product_id: productId, quantity },
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
                 fetchServerCart();
-            } catch (error) {
-                console.error("Error adding to server cart", error);
-            }
-        } else {
-            if (!Array.isArray(cartItems)) {
-                console.warn("Local cart is invalid. Resetting.");
-                setCartItems([]);
-                return;
-            }
-
-            const exists = cartItems.find(
-                (item) => item.product_id === product.product_id
-            );
-
-            if (!exists) {
-                const selectedProduct = {
-                    product_id: product.product_id,
-                    title: product.title,
-                    price: price,
-                    image: product?.product?.featured_image
-                };
-
-                const updatedCart = [...cartItems, selectedProduct];
-                setCartItems(updatedCart);
-                setCartToLocalStorage(updatedCart);
+            } catch (err) {
+                console.error("Error adding to server cart", err);
             }
         }
     };
 
-    // ➖ Remove from cart
+    /* -----------------------------------
+     * REMOVE ITEM
+     ----------------------------------- */
     const removeFromCart = async (productId) => {
-        if (token) {
-            const updatedCart = cartItems.filter(
-                (item) => item.product_id !== productId
-            );
-            setCartItems(updatedCart);
-            setCartToLocalStorage(updatedCart);
-            // try {
-            //     await axios.delete(`/api/cart/${productId}`, {
-            //         headers: { Authorization: `Bearer ${token}` },
-            //     });
-            //     fetchServerCart();
-            // } catch (error) {
-            //     console.error("Error removing from server cart", error);
-            // }
-        } else {
-            const updatedCart = cartItems.filter(
-                (item) => item.product_id !== productId
-            );
-            setCartItems(updatedCart);
-            setCartToLocalStorage(updatedCart);
-        }
+        const updatedCart = cartItems.filter(
+            (item) => item.product_id !== productId
+        );
+
+        setCartItems(updatedCart);
+        setCartToLocalStorage(updatedCart);
     };
 
-    // 🧹 Clear Cart
+    /* -----------------------------------
+     * CLEAR CART
+     ----------------------------------- */
     const clearCart = () => {
-        if (token) {
-            localStorage.removeItem("cart");
-        } else {
-            setCartItems([]);
-            localStorage.removeItem("cart");
-        }
+        setCartItems([]);
+        localStorage.removeItem("cart");
     };
 
-    // 💰 Order summary calculations
-    const subtotal = cartItems.reduce(
-        (acc, item) =>
-            acc + Number(item.price || 0) * (item.subscription_type === "single" ? 1 : 12),
-        0
-    );
+    /* -----------------------------------
+     * SUBTOTAL CALCULATION
+     ----------------------------------- */
+    const subtotal = cartItems.reduce((acc, item) => {
+        const qty = subscriptionQtyMap[item.subscription_type] || 1;
+        return acc + Number(item.price) * qty;
+    }, 0);
 
-
-
-
+    /* -----------------------------------
+     * TAX FETCH + CALCULATIONS
+     ----------------------------------- */
     const fetchTaxRate = async () => {
-        setTaxLoading(true)
+        setTaxLoading(true);
+
         try {
-            const response = await axios.get(`${BASE_URL}/tax-data`, {
-                headers: {
-                    Accept: 'application/json',
-                },
-            });
-
+            const response = await axios.get(`${BASE_URL}/tax-data`);
             const percentage = parseFloat(response?.data?.data[0]?.percentage);
-            setTaxParcentage(response?.data?.data[0]?.percentage);
+
+            setTaxParcentage(percentage);
+
             if (!isNaN(percentage)) {
-                setTaxRate(percentage / 100); // convert to decimal
+                setTaxRate(percentage / 100);
             }
-            setTaxLoading(false)
-        } catch (error) {
-            console.error('Failed to fetch tax data:', error);
-            setTaxLoading(false)
+        } catch (err) {
+            console.error("Failed to fetch tax data:", err);
         }
+
+        setTaxLoading(false);
     };
 
-    const handleTaxt = (subtotal) => {
-        console.log("taxRate: ", taxRate);
-
-        const tax = parseFloat((subtotal * taxRate).toFixed(2));
-        const total = parseFloat((subtotal + tax).toFixed(2));
-        setTax(tax);
-        setTotal(total);
+    const handleTax = (subtotal) => {
+        const t = parseFloat((subtotal * taxRate).toFixed(2));
+        const totalVal = parseFloat((subtotal + t).toFixed(2));
+        setTax(t);
+        setTotal(totalVal);
     };
-
 
     useEffect(() => {
-        if (taxRate > 0) {
-            handleTaxt(subtotal);
-        }
+        if (taxRate > 0) handleTax(subtotal);
     }, [subtotal, taxRate]);
 
-
+    /* -----------------------------------
+     * PROVIDER RETURN
+     ----------------------------------- */
     return (
         <CartContext.Provider
             value={{
                 cartItems,
-                taxLoading,
                 addToCart,
-                taxParcentage,
                 removeFromCart,
                 clearCart,
-                getCartFromLocalStorage,
                 subtotal,
                 tax,
-                total, // also referred to as payable amount
+                total,
+                taxLoading,
+                taxParcentage,
                 fetchTaxRate
             }}
         >

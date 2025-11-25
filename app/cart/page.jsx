@@ -21,7 +21,6 @@ import { useCart } from "../../services/context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
 import LoadingText from "../../components/LoadingText";
 import { PRODUCT_LIST } from "../../services/product";
-import Link from "next/link";
 
 export default function ShoppingCart() {
   const {
@@ -52,9 +51,9 @@ export default function ShoppingCart() {
         );
 
         setRecommendedProducts(filtered);
-        console.log("All products:", data);
-        console.log("Cart product IDs:", cartProductIds);
-        console.log("Filtered recommended products:", filtered);
+        // console.log("All products:", data);
+        // console.log("Cart product IDs:", cartProductIds);
+        // console.log("Filtered recommended products:", filtered);
       } catch (error) {
         console.error("Error fetching recommended products:", error);
       } finally {

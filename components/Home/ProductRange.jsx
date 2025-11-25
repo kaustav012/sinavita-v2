@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useCart } from "../../services/context/CartContext";
+import Link from "next/link";
 
 
 
 const ProductRange = ({ productGroups }) => {
     const [openIdx, setOpenIdx] = useState({ group: null, item: null });
+    const { addToCart } = useCart();
 
     return (
         <section className="max-w-6xl mx-auto px-4 py-16" id="all-products-section">
@@ -79,9 +82,18 @@ const ProductRange = ({ productGroups }) => {
                                         <div className="font-bold text-center mb-1">{item.name}</div>
                                         <div className="mb-3 text-gray-700 text-center">{item.short_description}</div>
                                         <div className="text-lg font-bold mb-3">${item?.single_offer_price || item?.single_base_price}</div>
-                                        <button className="bg-yellow-400 text-white font-semibold px-6 py-2 rounded hover:bg-yellow-500 transition">
-                                            ADD TO CART
-                                        </button>
+                                        <Link href="/cart">
+                                            <button onClick={() =>
+                                                addToCart(
+                                                    item,
+                                                    item?.single_offer_price || item?.single_base_price,
+                                                    "single"
+                                                )
+                                            } className="bg-yellow-400 text-white font-semibold px-6 py-2 rounded hover:bg-yellow-500 transition">
+                                                ADD TO CART
+                                            </button>
+                                        </Link>
+
                                     </div>
                                 )}
                             </div>

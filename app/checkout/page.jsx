@@ -230,7 +230,7 @@ export default function CheckoutPage() {
   }
 
   useEffect(() => {
-    if (addresses.length > 0 && !selectedAddressId) {
+    if (addresses?.length > 0 && !selectedAddressId) {
       setAddressToggleButton(false)
       setSelectedAddressId(addresses[0]?.id);
       getShippingCharges({

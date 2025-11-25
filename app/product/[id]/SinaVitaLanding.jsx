@@ -50,8 +50,8 @@ const SinaVitaLanding = ({ productCartData, productDetails, id }) => {
             const viewportTop = scrollY + 200; // fixed position (top-200px)
             const ctaBottomIfFixed = viewportTop + ctaHeight;
 
-            console.log("ctaBottomIfFixed: ", ctaBottomIfFixed);
-            console.log("stoppDocumentTop: ", stoppDocumentTop);
+            // console.log("ctaBottomIfFixed: ", ctaBottomIfFixed);
+            // console.log("stoppDocumentTop: ", stoppDocumentTop);
 
 
             // If fixed CTA would overlap with STOPP button, make it absolute
@@ -60,7 +60,7 @@ const SinaVitaLanding = ({ productCartData, productDetails, id }) => {
                 const qualitySection = qualitySectionRef.current;
                 const stopPosition = stoppDocumentTop - ctaHeight - 400;
 
-                console.log("stopPosition: ", stopPosition);
+                // console.log("stopPosition: ", stopPosition);
 
 
                 setButtonPosition('absolute');

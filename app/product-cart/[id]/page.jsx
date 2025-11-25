@@ -172,7 +172,7 @@ export default function Page() {
                       <div className="absolute -top-8 -right-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold w-16 h-16 flex items-center justify-center rounded-full">
                         ${productCartData?.product?.single_price}
                       </div>
-                      <div className="space-y-2 mt-4 flex items-start gap-3">
+                      <div className="space-y-2 flex items-start gap-3">
                         <div className="mt-2">
                           <RadioGroupItem value="single" id="single" />
                         </div>
