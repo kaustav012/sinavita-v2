@@ -40,7 +40,8 @@ export default function ShoppingCart() {
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
 
-  // console.log("recommendedProducts: ", recommendedProducts);
+  const { addToCart } = useCart();
+
 
 
   useEffect(() => {
@@ -345,6 +346,14 @@ export default function ShoppingCart() {
                               </span>
                             </div>
                             <Button
+                              onClick={() => {
+                                addToCart(
+                                  ele,
+                                  ele?.single_offer_price || ele?.single_base_price,
+                                  "monthly"
+                                );
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                              }}
                               variant="outline"
                               className="w-full border-2 border-gray-900 dark:border-gray-100 font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 uppercase"
                             >
