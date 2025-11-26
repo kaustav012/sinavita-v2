@@ -91,7 +91,7 @@ export default function ShoppingCart() {
     "12_monthly": 12
   };
 
-  console.log("cartItems: ", cartItems);
+  // console.log("cartItems: ", cartItems);
 
 
   return taxLoading ? (
@@ -175,7 +175,7 @@ export default function ShoppingCart() {
                                       {item.title}
                                     </h3>
                                     <p className="text-xs text-gray-500 dark:text-gray-400">
-                                      Clinically designed for migraine support
+                                      {item?.short_description}
                                     </p>
                                   </div>
                                 </div>
@@ -320,9 +320,16 @@ export default function ShoppingCart() {
                                 className="w-full h-auto rounded-lg"
                               />
                             </div>
-                            <span className="bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded">
+                            {/* <span className="bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded">
                               BEST SELLER
-                            </span>
+                            </span> */}
+                            {ele?.trust_badge?.badge_image_url && <div>
+                              <img
+                                src={ele?.trust_badge?.badge_image_url}
+                                alt="SinaVita Migraine Support Kit"
+                                className="rounded-lg"
+                              />
+                            </div>}
                           </div>
                           <div className="flex-1">
                             <div className="flex items-start justify-between mb-2">

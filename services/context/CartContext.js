@@ -86,9 +86,9 @@ export const CartProvider = ({ children }) => {
      * ADD TO CART
      ----------------------------------- */
     const addToCart = async (product, price, subscriptionType) => {
-        console.log("product:", product);
-        console.log("priceNew:", price);
-        console.log("subscriptionType:", subscriptionType);
+        // console.log("product:", product);
+        // console.log("priceNew:", price);
+        // console.log("subscriptionType:", subscriptionType);
 
         const productId = product?.product_id || product?.id;
         const quantity = subscriptionQtyMap[subscriptionType] || 1;
@@ -110,6 +110,7 @@ export const CartProvider = ({ children }) => {
                 price: price,
                 subscription_type: subscriptionType,
                 quantity: quantity,
+                short_description: product.short_description,
                 title: product.title || product.name,
                 image: product?.product?.featured_image || product?.featured_image,
             };
@@ -124,6 +125,7 @@ export const CartProvider = ({ children }) => {
                 product_id: productId,
                 title: product.title || product.name,
                 price: price,
+                short_description: product.short_description,
                 image: product?.product?.featured_image || product?.featured_image,
                 subscription_type: subscriptionType,
                 quantity: quantity,
