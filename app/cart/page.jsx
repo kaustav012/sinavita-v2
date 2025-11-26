@@ -338,7 +338,7 @@ export default function ShoppingCart() {
                                   {ele?.name}
                                 </h3>
                                 <p className="font-semibold text-sm text-gray-700 dark:text-gray-300 mb-2">
-                                  Audio Book
+                                  {ele?.individual_type}
                                 </p>
                               </div>
                             </div>
